@@ -29,8 +29,15 @@ const ll INF = 1e9 + 100;
 const ll MOD = 1e9 + 7;
 
 
+struct Player {
+    int pos, ate, time;
+    Player(int p, int a, int t) {
+        pos = p, ate = a, time = t;
+    }
+};
+
 int N;
-int arr[MX];
+int times[MX];
 
 int main() {
 
@@ -38,36 +45,29 @@ int main() {
 
     cin >> N;
     range(i, 1, N) {
-        cin >> arr[i];
+        cin >> times[i];
     }
 
-    int a_ind = 1, b_ind = N;
-    int a_cnt = 0, b_cnt = 0;
-    int last = 1;
-    while(a_ind < b_ind) {
-        int tm = min(arr[a_ind], arr[b_ind]);
-        arr[a_ind] -= tm;
-        arr[b_ind] -= tm;
-        if(arr[a_ind] == 0) {
-            a_ind++;
-            a_cnt++;
-            last = 0;
-        }
-        if(arr[b_ind] == 0) {
-            b_ind--;
-            b_cnt++;
-            last = 1;
-        }
-    }
-    if(arr[a_ind] + arr[b_ind] > 0) {
-        if(last) {
-            a_cnt++;
+    Player Alice = Player(1, 0, 0);
+    Player Bob = Player(N, 0, 0);
+
+    while(Alice.pos < Bob.pos) {
+        if(Alice.time <= Bob.time) {
+            Alice.ate++;
+            Alice.time += times[Alice.pos++];
         } else {
-            b_cnt++;
+            Bob.ate++;
+            Bob.time += times[Bob.pos--];
         }
     }
-
-    cout << a_cnt << " " << b_cnt;
+    if(Alice.pos == Bob.pos) {
+        if(Bob.time < Alice.time) {
+            Bob.ate++;
+        } else {
+            Alice.ate++;
+        }
+    }
+    cout << Alice.ate << " " << Bob.ate << "\n";
 
     return 0;
 }
