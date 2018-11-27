@@ -1,9 +1,9 @@
 # EXPLANATIONS OF SOLUTIONS
 
 ## P: Alice, Bob and Chocolate
-* problem link 		: [6C](http://codeforces.com/contest/6/problem/C)
-* solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/6C.cpp)
-* solution method	: two pointers
+* Problem link 		: [codeforces - 6C](http://codeforces.com/contest/6/problem/C)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/6C.cpp)
+* Solution method	: two pointers
 
 ### Explanation
 	Define two pointers
