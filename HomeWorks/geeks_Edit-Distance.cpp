@@ -54,7 +54,7 @@ int editDistance(int N, int M) {
 
 }
 
-int N, M;
+int T, N, M;
 
 int main() {
 
