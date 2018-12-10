@@ -234,8 +234,8 @@ _____
 * Compexity			: O(N^2)
 
 #### Explanation
-* Let LIS to be an array which LIS[i] is longest increasing subsequence ending with arr[i]
-* Let LDS to be an array which LDS[i] longest decreasing subsequence starting with arr[i]
+* Let LIS to be an array which LIS<sub>i</sub> is longest increasing subsequence ending with arr<sub>i</sub>
+* Let LDS to be an array which LDS<sub>i</sub> longest decreasing subsequence starting with arr<sub>i</sub>
 * Allocate memory for LIS and LDS, then initialize values as 1 for all indexes
 ```
     int lis = array
@@ -257,7 +257,7 @@ _____
             if arr[i] > arr[j]
                 lds[i] = max(lds[i], lds[j] + 1)
 ```
-* Return the maximum value of lis[i] + lds[i] - 1 // -1 is for current index
+* Return the maximum value of LIS<sub>i</sub> + LDS<sub>i</sub> - 1 ```// -1 is for current index```
 ```
     int result = 0
     for i from 1 to N
@@ -280,7 +280,7 @@ Create two heaps, and a counter for each heap. After that count the numbers.
         read arr[i]
         cnt[ arr[i] ]++
 ```
-check if the number appear more than once, and put one of them in the first pile, one of them in the second pile and the other put aside. After that, divide the numbers, that appears once, in two equal part and put the first part in the first pile and second part in the second pile.
+Check if the number appear more than once, and put one of them in the first pile, one of them in the second pile and the other put aside. After that, divide the numbers, that appears once, in two equal part and put the first part in the first pile and second part in the second pile.
 ```
     for number from 10 to 99
         if count[number] > 1
