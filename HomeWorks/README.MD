@@ -227,7 +227,43 @@ If last characters are not same, consider all three operations on last character
         )
 ``` 
 _____
+### PB - Edit distance
+* Problem link 		: [geeksforgeeks - LBS](https://practice.geeksforgeeks.org/problems/longest-bitonic-subsequence/0)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_LBS.cpp)
+* Solution method	: longest increasing and decreasing subsequence
+* Compexity			: O(N^2)
 
+#### Explanation
+* Let LIS to be an array which LIS[i] is longest increasing subsequence ending with arr[i]
+* Let LDS to be an array which LDS[i] longest decreasing subsequence starting with arr[i]
+* Allocate memory for LIS and LDS, then initialize values as 1 for all indexes
+```
+    int lis = array
+    int lds = array
+    for i from 1 to N
+        lis[i] = lds[i] = 1
+```
+* Compute LIS values from left to right
+```
+    for i from 2 to N
+        for j from 1 to i - 1
+            if arr[i] > arr[j]
+                lis[i] = max(lis[i], lis[j] + 1)
+```
+* Compute LDS values from left to right
+```
+    for i from N - 1 to 1
+        for j from N to i + 1
+            if arr[i] > arr[j]
+                lds[i] = max(lds[i], lds[j] + 1)
+```
+* Return the maximum value of lis[i] + lds[i] - 1 // -1 is for current index
+```
+    int result = 0
+    for i from 1 to N
+        result = max(result, lis[i] + lds[i] - 1)
+    return result
+```
 _____
 
 _____
