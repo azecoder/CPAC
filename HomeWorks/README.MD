@@ -265,5 +265,50 @@ _____
     return result
 ```
 _____
+### PB - Two Heaps
+* Problem link 		: [codeforces - 353B](http://codeforces.com/contest/353/problem/B)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/353B.cpp)
+* Solution method	: Math
+* Compexity			: O(2*N)
 
+#### Explanation
+Create two heaps, and a counter for each heap. After that count the numbers.
+```
+    read N
+    int M = 2 * N;
+    for i from 1 to M
+        read arr[i]
+        cnt[ arr[i] ]++
+```
+check if the number appear more than once, and put one of them in the first pile, one of them in the second pile and the other put aside. After that, divide the numbers, that appears once, in two equal part and put the first part in the first pile and second part in the second pile.
+```
+    for number from 10 to 99
+        if count[number] > 1
+            insert(heap1, number)   // insert number to first pile
+            insert(heap2, number)   // insert number to second pile
+            pile1++                 // count numbers in heap 1
+            pile2++                 // count numbers in heap 2
+            count[number] -= 2      // we get two numbers and insert them to heaps
+        else if count[number] == 1 
+            if pile1 < pile2            // if there are less numbers in heap 1
+                insert(heap1, number)   // insert number two heap 1
+                pile1++                 // increase count for heap 1
+                count[number]--         // we get one number and insert to heap 1
+            else
+                insert(heap2, number)   // insert number two heap 2
+                pile2++                 // increase count for heap 2
+                count[number]--         // we get one number and insert to heap 2
+```
+Finally, take the numbers, that we put aside, and separate them in two pile in any kind
+```
+    for number from 10 to 99
+        while pile1 < N and count[number] > 0
+            heap1[number]++
+            count[number]--
+            pile1++
+        while pile2 < N and count[number] > 0
+            heap2[number]++
+            count[number]--
+            pile2++
+```
 _____
