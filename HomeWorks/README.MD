@@ -275,7 +275,7 @@ _____
 Create two heaps, and a counter for each heap. After that count the numbers.
 ```
     read N
-    int M = 2 * N;
+    int M = 2 * N
     for i from 1 to M
         read arr[i]
         cnt[ arr[i] ]++
@@ -312,3 +312,123 @@ Finally, take the numbers, that we put aside, and separate them in two pile in a
             pile2++
 ```
 _____
+### PB - Leaders in an Array
+* Problem link 		: [geeksforgeeks - Leaders in an Array](https://practice.geeksforgeeks.org/problems/next-larger-element/0)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_Leader-in-Array.cpp)
+* Solution method	: Linear Search
+* Compexity			: O(N)
+
+#### Explanation
+Start searching from last element of the array, and for each index
+ we check and set a `max` as maximum element of the right side. if current element of array is bigger than the maximum element of the right side elements then we can said that this element is leader in this array.
+```
+    MAX = -INF // minus infinity number
+    for i from N to 1
+        if arr[i] > MAX
+            MAX = arr[i]
+            ADD(arr[i], leaders)
+
+```
+_____
+### PB - Kadane's Algorithm
+* Problem link 		: [geeksforgeeks - Kadane's Algorithm](https://practice.geeksforgeeks.org/problems/next-larger-element/0)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_Kadane-Algorithm.cpp)
+* Solution method	: Linear Search
+* Compexity			: O(N)
+
+#### Explanation
+Start searching from first element of array, and sum each element 
+if sum is bigger than zero, otherwise set sum as a current element. Get maximum sum as a result.
+```
+    for i form 1 to N
+        if sum >= 0
+            sum += arr[i]
+        else
+            sum = arr[i]    // initialize the sum
+        result = max(result, sum)   // get max sum of the subarrays
+```
+_____
+### PB - Missing number in array
+* Problem link 		: [geeksforgeeks - Missing Number](https://practice.geeksforgeeks.org/problems/next-larger-element/0)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_Missing-Number.cpp)
+* Solution method	: Linear Search, Math
+* Compexity			: O(N)
+
+#### Explanation
+Find the sum of elements 1 to N, and subtract each element in the 
+given array. Answer is the lost number in the array.
+```
+    sum = N * (N + 1) / 2   // sum of elements  from 1 to N
+    for each elem in array
+        sum -= elem
+    print sum
+```
+_____
+### PB - Trapping Rain Water
+* Problem link 		: [geeksforgeeks - Trapping Rain Water](https://practice.geeksforgeeks.org/problems/next-larger-element/0)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_Trapping-Rain-Water.cpp)
+* Solution method	: Linear Search, DP
+* Compexity			: O(N)
+
+#### Explanation
+Find left maximum and right maximum for each element of the given 
+array. Then answer is equal to sum of the `min(left[i], right[i]) - arr[i]` 
+```
+    arr   = [ 7, 4, 0, 9, 2, 4, 6 ]
+    left  = [ 7, 7, 7, 9, 9, 9, 9 ] // contains height of tallest bar to the left
+    right = [ 9, 9, 9, 9, 6, 6, 6 ] // contains height of tallest bar to the right
+```
+_____
+### PB - Maximum of all subarrays of size k
+* Problem link 		: [geeksforgeeks - Maximum of all subarrays](https://practice.geeksforgeeks.ohttps://practice.geeksforgeeks.org/problems/next-larger-element/0)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_Maximum-of-Subarrays.cpp)
+* Solution method	: Linear Search, Multiset
+* Compexity			: O(N)
+
+#### Explanation
+Create a multiset. Initially, inse
+rt first k elements of the array to our set. After that, start searching from K'th element to N'th element. For each index, 
+* remove arr <sub>i-k</sub> from set
+* insert arr <sub>i</sub> to set
+* get max element of the multiset
+```
+    for i from 1 to K
+        INSERT(arr[i], S)   // insert an element to set
+    GETMAX(S)   // print max element for first k element
+
+    for i from K+1 to N
+        REMOVE(arr[i-K])    // remove (i-k)'th element from set
+        INSERT(arr[i])      // insert i'th element to the set
+        GETMAX(S)           // print the max element of the set
+```
+_____
+### PB - Next larger element
+* Problem link 		: [geeksforgeeks - Next larger element](https://practice.geeksforgeeks.org/problems/next-larger-element/0)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_Next-Larger-Element.cpp)
+* Solution method	: Linear Search, Stack
+* Compexity			: O(N)
+
+#### Explanation
+Initially push the first element of the array to the stack. 
+```
+    INSERT(arr[1], S)  // insert first element to the stack
+```
+Start searching from second element to the end, while the next element is bigger than the top element of the stack then pop from stack contiguously and print this element as a next larger element. 
+```
+    for i from 2 to N
+        X = LAST(S) //  last element of the stack
+        while S not empty and arr[i] > X
+            print arr[i]    // it means arr[i] is next larger element for X
+            REMOVE(X, S)    // remove x from the Stack
+```
+Then, then push the next element to stack. 
+```
+        INSERT(arr[i], S)
+```
+At the end, if there is not any other larger element for elements of the stack, just pop and print -1 for this elements. it means that stack is decreasing order, so there is not any greater element.
+```
+    while S not empty
+        X = LAST(S)
+        print -1
+        REMOVE(X, S)
+```
