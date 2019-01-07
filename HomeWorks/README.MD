@@ -510,3 +510,57 @@ Then merge two sorted arrays and calculate inversion count during merge process.
 
         return inv_count
 ```
+_____
+### PB - Preorder Traversal and BST
+* Problem link 		: [geeksforgeeks - Preorder Traversal and BST](https://practice.geeksforgeeks.org/problems/preorder-traversal-and-bst/0)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_Preorder-Traversal.cpp)
+* Solution method	: Linear, Stack
+* Compexity			: O(N)
+
+#### Explanation
+We check all numbers from begin to end. Set root as minimum integer number as default. Check if right side node is smaller than the root node value, then this array can not be preorder.
+```
+    for i from 2 to N
+        if arr[i] < root    
+            print 0         // it not preorder presentation
+        .....               // code below
+```
+if arr[i] is bigger than top element of the stack, then it means it is in right subtree, so remove smaller elements from the stack, and get last element as a new root. After that add arr[i] to the stack.
+```
+    ADD(S, arr[1])
+    for i from 2 to N
+        .....               // code above
+        while S not empty and TOP(S) < arr[i]   // if arr[i] is in right subtree
+            root = TOP(S)   // set new root
+            POP(S)
+        ADD(S, arr[i])
+```
+_____
+### PB - Check for BST
+* Problem link 		: [geeksforgeeks - Check for BST](https://practice.geeksforgeeks.org/problems/check-for-bst/1)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_Check-for-BST.cpp)
+* Solution method	: BST
+* Compexity			: O(N)
+
+#### Explanation
+Start from root node, and then check all nodes. All left children datas must be smaller than their parent's data. And all right children datas must be bigger than the their parent's data
+```
+    left_node.key < parent.key
+    right_node.key >= parent.key
+```
+_____
+### PB - Maximum path sum
+* Problem link 		: [geeksforgeeks - Maximum path sum](https://practice.geeksforgeeks.org/problems/maximum-path-sum/1)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_Maximum-path-sum.cpp)
+* Solution method	: BST
+* Compexity			: O(N)
+
+#### Explanation
+Firstly, store maximum path sum going through left and right child of root. Set max_single as maximum path sum from root node to child.
+```
+    left_max_sum = maxSum(node.left)
+    right_max_sum = maxSum(node.right)
+
+    max_single = MAX(MAX(left_max_sum, right_max_sum) + node.data, node.data)
+```
+And assume we connect two maximum path in one node. so that we set ``` max_top = MAX(max_single, left_max_sum + right_max_sum + node.data) ```
