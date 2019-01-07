@@ -4,21 +4,17 @@
 #define faster_io       ios_base::sync_with_stdio(false);cin.tie()
 #define range(i,a,b)    for(size_t i=a;i<=b;i++)
 #define rrange(i,a,b)   for(size_t i=a;i>=b;i--)
-#define MX              400005
-
 
 using namespace std;
-
 
 
 int N;
 int bar, largest_tower = 0, height_bar[1005];
 set <int> dist_bars;
 
-int main()
-{
+int main() {
 
-	faster_io;
+    faster_io;
 
     cin >> N;
     range(i, 1, N) {
@@ -30,5 +26,5 @@ int main()
     };
     cout << largest_tower << " " << dist_bars.size() << "\n";
 
-	return 0;
+    return 0;
 }

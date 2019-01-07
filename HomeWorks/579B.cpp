@@ -8,7 +8,6 @@
 #define pb              push_back
 #define st              first
 #define nd              second
-#define MX              400005
 
 
 using namespace std;
