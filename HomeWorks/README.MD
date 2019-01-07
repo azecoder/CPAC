@@ -432,3 +432,81 @@ At the end, if there is not any other larger element for elements of the stack, 
         print -1
         REMOVE(X, S)
 ```
+_____
+### PB - Largest Even Number
+* Problem link 		: [geeksforgeeks - Largest Even Number](https://practice.geeksforgeeks.org/problems/largest-even-number/0)
+* Solution code 	: [cpp1](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_Largest-Even-Number.cpp), [cpp2](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_Largest-Even-Number2.cpp)
+* Solution method	: Counting Sort / Linear Search, MultiSet
+* Compexity			: O(N)
+
+#### Explanation
+Firstly, read string, then convert each character of string to integer, and count each integer.
+```
+    read str
+    for each ch in str
+        int x = (int)(ch - '0') // convert char to int
+        count[x]++              // count each number in string
+```
+then, find the minimum even number from the count array.
+```
+    ind = 0         // we will have maximum 10 different digits in string
+    while ind < 10  // so we check between 0 and 9.. only these numbers [0,2,4,6,8]
+        if count[ind] > 0   // if we have 
+            min_even = ind  // then it menas we find the min even number
+            break
+        ind += 2            // we search in the range of only even numbers
+```
+At the end, start from 9 to 0 and print each x count<sub>x</sub> times, but if digit is eaqual to minimum even number, then print it count<sub>x</sub>-1 time.
+```
+    if have min_even        // if we have minimum even number
+        count[min_even]--   // decrease count, we will show this minimum even number at the end
+    for i from 9 to 0
+        for j from 1 to count[i] // print each digit count[digit] times
+            print i
+    if have min_even    // if we have minimum even number 
+        print min_even  // then print it
+```
+_____
+### PB - Inversion Count
+* Problem link 		: [geeksforgeeks - Inversion Count](https://www.spoj.com/problems/INVCNT/)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/spoj_INVCNT.cpp)
+* Solution method	: Merge Sort, Divide and Conquer
+* Compexity			: O(N*log<sup>N</sup>)
+
+#### Explanation
+Use MergeSort Algorithm. Firstly, write a recursive function that sorts the input array. Divide the array into two parts recursively. 
+```
+    MERGE_SORT(left, right)
+        if left == right
+            return
+        
+        mid = (left + right) / 2    // calculate middle index
+        MERGE_SORT(left, mid)       // divide left to middle
+        MERGE_SORT(mid+1, right)    // divide middle to right
+
+        result += MERGE(left, right)    // merge (left,middle) and (middle,right), and sum inversion count
+
+```
+Then merge two sorted arrays and calculate inversion count during merge process.
+```
+    MERGE(left, right)
+        inv_count = 0               // default value
+        mid = (left + right) / 2
+        l = left
+        r = mid + 1
+        while(l <= mid and r <= right)
+            if(arr[l] > arr[r])             // temp will be sorted array in these range
+                temp[x++] = arr[l++]        // insert from left subarray to temp array
+                inv_count += (right - r + 1)    // counting the inversion count
+            else
+                temp[x++] = arr[r++]        // insert from right subarray to array
+        
+        for i from l to mid
+            temp[x++] = arr[i++]    // Copy the remaining elements of left subarray
+        for i from r to right
+            temp[x++] = arr[i++]    // Copy the remaining elements of left subarray
+        for i from left to right
+            arr[i] = temp[i - left] // Copy back the merged elements to original array
+
+        return inv_count
+```
