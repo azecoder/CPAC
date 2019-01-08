@@ -227,7 +227,7 @@ If last characters are not same, consider all three operations on last character
         )
 ``` 
 _____
-### PB - Edit distance
+### PB - Longest Bitonic Subsequence
 * Problem link 		: [geeksforgeeks - LBS](https://practice.geeksforgeeks.org/problems/longest-bitonic-subsequence/0)
 * Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_LBS.cpp)
 * Solution method	: longest increasing and decreasing subsequence
@@ -564,3 +564,72 @@ Firstly, store maximum path sum going through left and right child of root. Set 
     max_single = MAX(MAX(left_max_sum, right_max_sum) + node.data, node.data)
 ```
 And assume we connect two maximum path in one node. so that we set ``` max_top = MAX(max_single, left_max_sum + right_max_sum + node.data) ```
+_____
+### PB -  Ilya and Queries
+* Problem link 		: [codeforces - 313B](http://codeforces.com/contest/313/problem/B)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/313B.cpp)
+* Solution method	: DP
+* Compexity			: O(N)
+
+#### Explanation
+Check from second character of the string to the end. If current character is equal to previous one, then count for this index is equal to 1 + count of the previous index.
+```
+    for i from 1 to len
+        if s[i] = s[i-1]
+            dp[i] = dp[i-1] + 1
+        else
+            dp[i] = dp[i-1]
+```
+whit this method we find the result for from first index to another one. For range (left,right), we will use ```(left,right) = (1,right) - (1,left)```
+_____
+### PB -  Little Girl and Maximum Sum
+* Problem link 		: [codeforces - 276C](http://codeforces.com/contest/276/problem/C)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/276C.cpp)
+* Solution method	: DP
+* Compexity			: O(N)
+
+#### Explanation
+Firstly, we must calculate how much time we use each index in queries.
+```
+    for i from 1 to Q   //  number of queries
+        read (left, right)
+        count[left]++
+        count[right+1]--
+    for i from to N     // number of the elements in the array
+        count[i] += count[i-1]
+```
+Then sort this count array and input array, try to show maximum element of the array maximum time, so that result is
+```
+    sort(arr)   //  initial array
+    sort(count)
+    for i from 1 to N
+        result += arr[i] * count[i]
+```
+_____
+### PB -  https://www.spoj.com/problems/UPDATEIT/
+* Problem link 		: [spoj - UPDATEIT](https://www.spoj.com/problems/UPDATEIT/)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/UPDATEIT.cpp)
+* Solution method	: BIT, Fenwick
+* Compexity			: O(log<sup>N</sup>)
+
+#### Explanation
+```
+    while index <= length
+        arr[ind] += value
+        index += index & (-index)
+```
+<!--
+_____
+### PB -  https://www.spoj.com/problems/UPDATEIT/
+* Problem link 		: [spoj - UPDATEIT](https://www.spoj.com/problems/UPDATEIT/)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/UPDATEIT.cpp)
+* Solution method	: BIT, Fenwick
+* Compexity			: O(log<sup>N</sup>)
+
+#### Explanation
+```
+    while index <= length
+        arr[ind] += value
+        index += index & (-index)
+```
+-->
