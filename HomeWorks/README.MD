@@ -709,7 +709,7 @@ Use Mo's Algorithm to solve the problem. For each query change the `curL` and `c
     
     // IN MO's Algorithm use this formula to update sum
     // For example..
-    
+
     L = query.left
     R = query.right
 
@@ -724,6 +724,45 @@ Use Mo's Algorithm to solve the problem. For each query change the `curL` and `c
         number = arr[curL]
         count[number]--
         rangeSum -= formula(number, count[number])
+```
+_____
+### PB -  Triplets
+* Problem link 		: [exam - Triplets](https://github.com/rossanoventurini/CompetitiveProgramming/blob/master/Exams/Text14022018.pdf)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/exam_Triplets.cpp)
+* Solution method	: Linear
+* Compexity			: `O(N^2)`
+
+#### Explanation
+start from checking from `2nd` element to `(N-1)'th` element. For each index `i`, count how many element have in range `(1, i)` that smaller than `i'th` element of array.
+```
+    current = arr[i]
+    for j from 1 to i - 1
+        if(arr[j] < current)
+            count1++
+```
+And, for each index `i`, count how many element have in range (i+1, N) that greater than `i'th` element of the array.
+```
+    current = arr[i]
+    for j from i + 1 to N
+        if(arr[j] > current)
+            count2++
+```
+At the end, number of the triples is equal to sum of the `count1 * count2` 
+_____
+### PB -  Array Copy
+* Problem link 		: [exam - Triplets](https://github.com/rossanoventurini/CompetitiveProgramming/blob/master/Exams/Text23012018.pdf)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/exam_Array_Copy.cpp)
+* Solution method	: Segment tree
+* Compexity			: `O(M*logN)`
+
+#### Explanation
+To solve this problem, we can use update and query methods of the segment tree. We don't need build method, because we have a `B` array and we will change some range of the array `B`. The important case for this problem is uptade method. `B[leftB..leftB+k] = A[leftA..leftA+k]`
+```
+    update(left, right, index)
+        .......                     // some code here..
+        if left >= lB and right <= rB
+            B[left] = A[lA - lB + left];
+        .......                     // some code here..
 ```
 
 <!--
