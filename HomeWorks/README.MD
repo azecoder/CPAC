@@ -4,7 +4,7 @@
 * Problem link 		: [codeforces - 510C](http://codeforces.com/contest/510/problem/C)
 * Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/510C.cpp)
 * Solution method	: Graph, DFS
-* Compexity			: O(N^2)
+* Compexity			: `O(N^2)`
 
 #### Explanation
 Firstly, in my solution I need a some changes as 'charaters to numbers' and 'numbers to characters'. So that I create two methods.
@@ -38,7 +38,7 @@ CHECK(int x)
         print "Impossible"      // so it is impossible
         exit
 ```
-Now, we have an alphabet and we have a change list for characters. So we start from a to z and do dfs.. In dfs, we will change characters with new one from the change list. But we check if we change the same character before it means that we will get a cycle in dfs and it means that it is impossible to create a new alphabet.
+Now, we have an alphabet and we have a change list for characters. So we start from `a` to `z` and do dfs.. In dfs, we will change characters with new one from the change list. But we check if we change the same character before it means that we will get a cycle in dfs and it means that it is impossible to create a new alphabet.
 ```
 MAIN()
     for i from 1 to 26 
@@ -63,32 +63,32 @@ _____
 * Problem link 		: [geeksforgeeks - LPS](https://practice.geeksforgeeks.org/problems/longest-palindromic-subsequence/0)
 * Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_LPS.cpp)
 * Solution method	: Recursion & DP
-* Compexity			: O(N^2)
+* Compexity			: `O(N^2)`
 
 #### Explanation
-Let X be the input sequence of length N and LPS(X, 0, N-1) be the length of the longest palindromic subsequence of X.
+Let `X` be the input sequence of length `N` and `LPS(X, 0, N-1)` be the length of the longest palindromic subsequence of `X`.
 
 Let A be a subsequence of X. 
 ```
     A = X[left, right]
 ```
-if A is a single character then it is a palindrome, and length of this palindrome is one.
+if `A` is a single character then it is a palindrome, and length of this palindrome is one.
 ```
     if left == right
         return 1
 ```
-if length of A is 2 and A[0] is equal to A[1] then it is a palindrome.
+if length of `A` is `2` and `A[0]` is equal to `A[1]` then it is a palindrome.
 ```
     if left + 1 == right and X[left] = X[right]
         return 2
 ```
-If there are more than two characters in subsequence A, and first and last characters are same, then
+If there are more than two characters in subsequence `A`, and first and last characters are same, then
 ```
     if X[left] == X[right]
         return 2 + LPS( left + 1 , right - 1 )
 ```
 if first and last characters of the subsequence are different, then
-if last and first characters of the subsequence are same, then check A[first, last-1] and A[first+1, last] recursively.
+if last and first characters of the subsequence are same, then check `A[first, last-1]` and `A[first+1, last]` recursively.
 ```
     if X[left] != X[right]
         return MAX( 
@@ -105,7 +105,7 @@ Considering the above implementation, following is a partial recursion tree for 
           /   \        /   \
      [0..3] [1..4]  [1..4] [2..5]
 
-In the above partial recursion tree, LPS(1, 4) is being solved twice. If we draw the complete recursion tree, then we can see that there are many subproblems which are solved again and again. But we can use DP to save the results of the solved subsequences.
+In the above partial recursion tree, `LPS(1, 4)` is being solved twice. If we draw the complete recursion tree, then we can see that there are many subproblems which are solved again and again. But we can use `DP` to save the results of the solved subsequences.
 ```
     // with this method, we will not solve subproblems again and again
     // if we solve it once, we save the result into DP, 
@@ -131,7 +131,7 @@ _____
 * Problem link 		: [codeforces - 6C](http://codeforces.com/contest/6/problem/C)
 * Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/6C.cpp)
 * Solution method	: Two pointers 
-* Compexity			: O(N)
+* Compexity			: `O(N)`
 
 #### Explanation
 First of all you need to define two pointers. 
@@ -159,7 +159,7 @@ _____
 * Problem link 		: [codeforces - 466C](http://codeforces.com/contest/466/problem/C)
 * Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/466C.cpp)
 * Solution method	: Dynamic programming
-* Compexity			: O(N)
+* Compexity			: `O(N)`
 
 #### Explanation
 First of all we must check if we can divide this array in three part or not. So that, we get sum of all elements in array.
@@ -168,13 +168,13 @@ for i from 1 to N
     read arr[i]
     sum += arr[i]
 ```
-if sum of the all elements is equal to S, then sum of each of the 3 part must be equal to S/3. Therefore if S is not divided by 3 then answer is 0.
+if sum of the all elements is equal to `S`, then sum of each of the `3` part must be equal to `S/3`. Therefore if `S` is not divided by `3` then answer is `0`.
 ```
 if S mod 3 > 0
     print 0
     exit
 ```
-Let's start to iterate for first part. We start check if sum of j to N is equal to apart sum. And we create a new array and save the points which sum of the elements from this point to N is equal to S/3.
+Let's start to iterate for first part. We start check if sum of `j` to `N` is equal to apart sum. And we create a new array and save the points which sum of the elements from this point to `N` is equal to `S/3`.
 ```
 cnt = aray(N)   // is a new array for saving points - default is 0
 psum = sum/3    // part sum
@@ -184,12 +184,12 @@ for i from N to 1
     if csum == psum
         cnt[i] = 1
 ``` 
-Now we use cnt array for shows how much time we get same sum with S/3 between current index and N. 
+Now we use cnt array for shows how much time we get same sum with `S/3` between current index and N. 
 ```
 for i from N - 1 to 1
     cnt[i] += cnt[i+1]
 ```
-In final part of the solution, for each prefix [1..i] of the initial array we just add cnt[i+2] to answer if sum[1..i] equals to S/3
+In final part of the solution, for each prefix `[1..i]` of the initial array we just add `cnt[i+2]` to answer if `sum[1..i]` equals to `S/3`
 ```
 csum = 0        // current sum, default is 0
 for i from 1 to N - 2
@@ -202,7 +202,7 @@ _____
 * Problem link 		: [geeksforgeeks - Edit-Distance](https://practice.geeksforgeeks.org/problems/edit-distance/0)
 * Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_Edit-Distance.cpp)
 * Solution method	: Recursion
-* Compexity			: O(N*M)
+* Compexity			: `O(N*M)`
 
 #### Explanation
 If first string is empty, the only option is to insert all characters of second string into first or If second string is empty, the only option is to remove all characters of first string.
@@ -231,33 +231,33 @@ _____
 * Problem link 		: [geeksforgeeks - LBS](https://practice.geeksforgeeks.org/problems/longest-bitonic-subsequence/0)
 * Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_LBS.cpp)
 * Solution method	: longest increasing and decreasing subsequence
-* Compexity			: O(N^2)
+* Compexity			: `O(N^2)`
 
 #### Explanation
-* Let LIS to be an array which LIS<sub>i</sub> is longest increasing subsequence ending with arr<sub>i</sub>
-* Let LDS to be an array which LDS<sub>i</sub> longest decreasing subsequence starting with arr<sub>i</sub>
-* Allocate memory for LIS and LDS, then initialize values as 1 for all indexes
+* Let `LIS` to be an array which `LIS[i]` is longest increasing subsequence ending with `arr[i]`
+* Let `LDS` to be an array which `LDS[i]` longest decreasing subsequence starting with `arr[i]`
+* Allocate memory for `LIS` and `LDS`, then initialize values as `1` for all indexes
 ```
     int lis = array
     int lds = array
     for i from 1 to N
         lis[i] = lds[i] = 1
 ```
-* Compute LIS values from left to right
+* Compute `LIS` values from `left` to `right`
 ```
     for i from 2 to N
         for j from 1 to i - 1
             if arr[i] > arr[j]
                 lis[i] = max(lis[i], lis[j] + 1)
 ```
-* Compute LDS values from left to right
+* Compute `LDS` values from `left` to `right`
 ```
     for i from N - 1 to 1
         for j from N to i + 1
             if arr[i] > arr[j]
                 lds[i] = max(lds[i], lds[j] + 1)
 ```
-* Return the maximum value of LIS<sub>i</sub> + LDS<sub>i</sub> - 1 ```// -1 is for current index```
+* Return the maximum value of `LIS[i] + LDS[i] - 1` `# -1 is for current index`
 ```
     int result = 0
     for i from 1 to N
@@ -269,7 +269,7 @@ _____
 * Problem link 		: [codeforces - 353B](http://codeforces.com/contest/353/problem/B)
 * Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/353B.cpp)
 * Solution method	: Math
-* Compexity			: O(2*N)
+* Compexity			: `O(2*N)`
 
 #### Explanation
 Create two heaps, and a counter for each heap. After that count the numbers.
@@ -316,7 +316,7 @@ _____
 * Problem link 		: [geeksforgeeks - Leaders in an Array](https://practice.geeksforgeeks.org/problems/next-larger-element/0)
 * Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_Leader-in-Array.cpp)
 * Solution method	: Linear Search
-* Compexity			: O(N)
+* Compexity			: `O(N)`
 
 #### Explanation
 Start searching from last element of the array, and for each index
@@ -334,11 +334,11 @@ _____
 * Problem link 		: [geeksforgeeks - Kadane's Algorithm](https://practice.geeksforgeeks.org/problems/next-larger-element/0)
 * Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_Kadane-Algorithm.cpp)
 * Solution method	: Linear Search
-* Compexity			: O(N)
+* Compexity			: `O(N)`
 
 #### Explanation
 Start searching from first element of array, and sum each element 
-if sum is bigger than zero, otherwise set sum as a current element. Get maximum sum as a result.
+if sum is bigger than `0`, otherwise set sum as a current element. Get maximum sum as a result.
 ```
     for i form 1 to N
         if sum >= 0
@@ -352,10 +352,10 @@ _____
 * Problem link 		: [geeksforgeeks - Missing Number](https://practice.geeksforgeeks.org/problems/next-larger-element/0)
 * Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_Missing-Number.cpp)
 * Solution method	: Linear Search, Math
-* Compexity			: O(N)
+* Compexity			: `O(N)`
 
 #### Explanation
-Find the sum of elements 1 to N, and subtract each element in the 
+Find the sum of elements `1` to `N`, and subtract each element in the 
 given array. Answer is the lost number in the array.
 ```
     sum = N * (N + 1) / 2   // sum of elements  from 1 to N
@@ -383,13 +383,12 @@ _____
 * Problem link 		: [geeksforgeeks - Maximum of all subarrays](https://practice.geeksforgeeks.ohttps://practice.geeksforgeeks.org/problems/next-larger-element/0)
 * Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_Maximum-of-Subarrays.cpp)
 * Solution method	: Linear Search, Multiset
-* Compexity			: O(N)
+* Compexity			: `O(N)`
 
 #### Explanation
-Create a multiset. Initially, inse
-rt first k elements of the array to our set. After that, start searching from K'th element to N'th element. For each index, 
-* remove arr <sub>i-k</sub> from set
-* insert arr <sub>i</sub> to set
+Create a multiset. Initially, insert first `K` elements of the array to our set. After that, start searching from `K'th` element to `N'th` element. For each index, 
+* remove `arr[i-k]` from set
+* insert `arr[i]` to set
 * get max element of the multiset
 ```
     for i from 1 to K
@@ -406,7 +405,7 @@ _____
 * Problem link 		: [geeksforgeeks - Next larger element](https://practice.geeksforgeeks.org/problems/next-larger-element/0)
 * Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_Next-Larger-Element.cpp)
 * Solution method	: Linear Search, Stack
-* Compexity			: O(N)
+* Compexity			: `O(N)`
 
 #### Explanation
 Initially push the first element of the array to the stack. 
@@ -425,7 +424,7 @@ Then, then push the next element to stack.
 ```
         INSERT(arr[i], S)
 ```
-At the end, if there is not any other larger element for elements of the stack, just pop and print -1 for this elements. it means that stack is decreasing order, so there is not any greater element.
+At the end, if there is not any other larger element for elements of the stack, just pop and print `-1` for this elements. it means that stack is decreasing order, so there is not any greater element.
 ```
     while S not empty
         X = LAST(S)
@@ -437,7 +436,7 @@ _____
 * Problem link 		: [geeksforgeeks - Largest Even Number](https://practice.geeksforgeeks.org/problems/largest-even-number/0)
 * Solution code 	: [cpp1](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_Largest-Even-Number.cpp), [cpp2](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_Largest-Even-Number2.cpp)
 * Solution method	: Counting Sort / Linear Search, MultiSet
-* Compexity			: O(N)
+* Compexity			: `O(N)`
 
 #### Explanation
 Firstly, read string, then convert each character of string to integer, and count each integer.
@@ -456,7 +455,7 @@ then, find the minimum even number from the count array.
             break
         ind += 2            // we search in the range of only even numbers
 ```
-At the end, start from 9 to 0 and print each x count<sub>x</sub> times, but if digit is eaqual to minimum even number, then print it count<sub>x</sub>-1 time.
+At the end, start from 9 to 0 and print each `x` `count[x]` times, but if digit is eaqual to minimum even number, then print it `count[x]-1` time.
 ```
     if have min_even        // if we have minimum even number
         count[min_even]--   // decrease count, we will show this minimum even number at the end
@@ -471,7 +470,7 @@ _____
 * Problem link 		: [geeksforgeeks - Inversion Count](https://www.spoj.com/problems/INVCNT/)
 * Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/spoj_INVCNT.cpp)
 * Solution method	: Merge Sort, Divide and Conquer
-* Compexity			: O(N*log<sup>N</sup>)
+* Compexity			: `O(N*logN)`
 
 #### Explanation
 Use MergeSort Algorithm. Firstly, write a recursive function that sorts the input array. Divide the array into two parts recursively. 
@@ -515,7 +514,7 @@ _____
 * Problem link 		: [geeksforgeeks - Preorder Traversal and BST](https://practice.geeksforgeeks.org/problems/preorder-traversal-and-bst/0)
 * Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_Preorder-Traversal.cpp)
 * Solution method	: Linear, Stack
-* Compexity			: O(N)
+* Compexity			: `O(N)`
 
 #### Explanation
 We check all numbers from begin to end. Set root as minimum integer number as default. Check if right side node is smaller than the root node value, then this array can not be preorder.
@@ -525,7 +524,7 @@ We check all numbers from begin to end. Set root as minimum integer number as de
             print 0         // it not preorder presentation
         .....               // code below
 ```
-if arr[i] is bigger than top element of the stack, then it means it is in right subtree, so remove smaller elements from the stack, and get last element as a new root. After that add arr[i] to the stack.
+if `arr[i]` is bigger than top element of the stack, then it means it is in right subtree, so remove smaller elements from the stack, and get last element as a new root. After that add `arr[i]` to the stack.
 ```
     ADD(S, arr[1])
     for i from 2 to N
@@ -540,7 +539,7 @@ _____
 * Problem link 		: [geeksforgeeks - Check for BST](https://practice.geeksforgeeks.org/problems/check-for-bst/1)
 * Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_Check-for-BST.cpp)
 * Solution method	: BST
-* Compexity			: O(N)
+* Compexity			: `O(N)`
 
 #### Explanation
 Start from root node, and then check all nodes. All left children datas must be smaller than their parent's data. And all right children datas must be bigger than the their parent's data
@@ -553,7 +552,7 @@ _____
 * Problem link 		: [geeksforgeeks - Maximum path sum](https://practice.geeksforgeeks.org/problems/maximum-path-sum/1)
 * Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_Maximum-path-sum.cpp)
 * Solution method	: BST
-* Compexity			: O(N)
+* Compexity			: `O(N)`
 
 #### Explanation
 Firstly, store maximum path sum going through left and right child of root. Set max_single as maximum path sum from root node to child.
@@ -563,16 +562,16 @@ Firstly, store maximum path sum going through left and right child of root. Set 
 
     max_single = MAX(MAX(left_max_sum, right_max_sum) + node.data, node.data)
 ```
-And assume we connect two maximum path in one node. so that we set ``` max_top = MAX(max_single, left_max_sum + right_max_sum + node.data) ```
+And assume we connect two maximum path in one node. so that we set ` max_top = MAX(max_single, left_max_sum + right_max_sum + node.data) `
 _____
 ### PB -  Ilya and Queries
 * Problem link 		: [codeforces - 313B](http://codeforces.com/contest/313/problem/B)
 * Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/313B.cpp)
 * Solution method	: DP
-* Compexity			: O(N)
+* Compexity			: `O(N)`
 
 #### Explanation
-Check from second character of the string to the end. If current character is equal to previous one, then count for this index is equal to 1 + count of the previous index.
+Check from second character of the string to the end. If current character is equal to previous one, then count for this index is equal to `1 + count` of the previous index.
 ```
     for i from 1 to len
         if s[i] = s[i-1]
@@ -580,13 +579,13 @@ Check from second character of the string to the end. If current character is eq
         else
             dp[i] = dp[i-1]
 ```
-whit this method we find the result for from first index to another one. For range (left,right), we will use ```(left,right) = (1,right) - (1,left)```
+whit this method we find the result for from first index to another one. For range `(left,right)`, we will use `(left,right) = (1,right) - (1,left)`
 _____
 ### PB -  Little Girl and Maximum Sum
 * Problem link 		: [codeforces - 276C](http://codeforces.com/contest/276/problem/C)
 * Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/276C.cpp)
 * Solution method	: DP
-* Compexity			: O(N)
+* Compexity			: `O(N)`
 
 #### Explanation
 Firstly, we must calculate how much time we use each index in queries.
@@ -606,11 +605,11 @@ Then sort this count array and input array, try to show maximum element of the a
         result += arr[i] * count[i]
 ```
 _____
-### PB -  https://www.spoj.com/problems/UPDATEIT/
+### PB -  Update the Array
 * Problem link 		: [spoj - UPDATEIT](https://www.spoj.com/problems/UPDATEIT/)
 * Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/UPDATEIT.cpp)
 * Solution method	: BIT, Fenwick
-* Compexity			: O(log<sup>N</sup>)
+* Compexity			: `O(logN)`
 
 #### Explanation
 ```
@@ -618,6 +617,67 @@ _____
         arr[ind] += value
         index += index & (-index)
 ```
+_____
+### PB -  Megacity
+* Problem link 		: [codeforces - 424B](http://codeforces.com/contest/424/problem/B)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/424B.cpp)
+* Solution method	: Priority Queue
+* Compexity			: `O(N)`
+
+#### Explanation
+Firstly, find the distance from each city to `(0,0)`. Then sort all cities for their distances.
+```
+    read (x, y, people)
+    dist = distance(0, 0, x, y)     // find distance from 0,0 to x,y
+    ADD({dist, people}, PQ)         //  add distance and people count to priority queue
+```
+Then start from the nearest city, and add population of the city to the people count of the Tomsk city. If we reach to the 1 million population then it means that we find the minimum radius of the megacity
+```
+    while PQ not empty
+        data = TOP(PQ)
+        population += data.people
+        if population == 1000000
+            print data.distance
+            exit
+```
+_____
+### PB -  Find Pair
+* Problem link 		: [codeforces - 160C](http://codeforces.com/contest/160/problem/C)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/160C.cpp)
+* Solution method	: Map
+* Compexity			: `O(N*N)`
+
+#### Explanation
+Firstly sort elements of array and find the count of each element. Use the map to sort elements and counts them efficiently.
+```
+    map <int, int> arr      // first for element, second for count
+    for i from  1 to N
+        read x
+        arr[x]++            // insert element, and count it
+```
+After that, start solving from the smaller to biggest element of the map. Firsly, we are trying to find first element of the couples.
+```
+    for each elem in arr
+        count = elem.second * N     //  how many times we use this element in couples
+        if count >= K                       
+            result.first = element.first    // it means that, it is first number of the K'th couple
+            ......          // code below
+            break
+        else                // Otherwise, we skip to the next element
+            K -= count      // It means that, answer is not in these couples, so we subtract the count
+```
+After find the first element of the couple, we will search for the second element. To find the first element of the couple, we compare `elem.count * N` with `K` for each element of the map. But for second element of the couple, we found the first element, so that we will compare `elem1.count * elem2.count` with `K`
+```
+    for each elem2 in arr
+        count2 = elem.second * elem2.second
+        if count2 >= K
+            result.second = elem2.first // in this case, we found the second elemet of the couple
+            break
+        else
+            K -= count2     // Otherwise, we do same thing as first
+```
+
+
 <!--
 _____
 ### PB -  https://www.spoj.com/problems/UPDATEIT/
