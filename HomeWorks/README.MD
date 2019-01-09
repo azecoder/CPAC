@@ -764,6 +764,55 @@ To solve this problem, we can use update and query methods of the segment tree. 
             B[left] = A[lA - lB + left];
         .......                     // some code here..
 ```
+_____
+### PB -  X Total Shapes
+* Problem link 		: [geeks - X Total Shapes](https://practice.geeksforgeeks.org/problems/x-total-shapes/0)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_X-Total-Shapes.cpp)
+* Solution method	: DFS
+* Compexity			: `O(N*M)`
+
+#### Explanation
+Convert given input two dimensial array. And then start to check `(i,j)` from `1,1` to `N,N`, if `shape[i,j]` is equal to `'X'`, then start `DFS` from this point. And color the visited points each time. In `DFS` function,
+for each `(x,y)` coordinate, do `DFS` to non colored `(x,y-1)`, `(x,y+1)`, `(x-1,y)`, `(x+1,y)` points.
+```
+    result = 0
+    for i from 1 to N
+        for j from 1 to M
+            if non colored (i,j)
+                result++
+                DFS(i,j)
+    print result
+```
+_____
+### PB -  Bipartite Graph
+* Problem link 		: [geeks - Bipartite Graph](https://practice.geeksforgeeks.org/problems/bipartite-graph/1)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_Bipartite-Graph.cpp)
+* Solution method	: Graph
+* Compexity			: `O(N+M)`
+
+#### Explanation
+In Bipartite graph, we color the graph using two colors. It is also possible for cycle graphs, but number of the edges must be even. It is not possible to color a cycle graph with odd cycle using two colors. Additionally, if there is a self loop, then it can not be bipartite graph.
+```
+    for i from 1 to N
+        for j from 1 to N
+            if arr[i][j] == 1
+                print "NO"
+```
+To solve this problem, start to check from `1st` point. Then, find all non-colored adjacent vertices. if destination `v` is not colored, then assign alternate color to this adjacent `v` of `u`.
+```
+    u = Q.front
+    Q.pop
+    for each v in u
+        if not colored v
+            color[v] = 1 - color[u] 
+            Q.push(v)
+```
+
+
+
+
+
+
 
 <!--
 _____
