@@ -694,6 +694,37 @@ Use segment tree, update range and get the minimum value of the given range. But
             tree->minRange(1, left)
         )
 ```
+_____
+### PB -  Powerfull Array
+* Problem link 		: [codeforces - 86D](http://codeforces.com/contest/86/problem/D)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/86D.cpp)
+* Solution method	: Mo's algorithm, Math
+* Compexity			: `O(M*sqrtN)`
+
+#### Explanation
+Use Mo's Algorithm to solve the problem. For each query change the `curL` and `curR` and update `rangeSum` each time. And write a formula to calculate `rangeSum`.
+```
+    formula(number, count)
+        return number * (count^2 - (count-1)^2)
+    
+    // IN MO's Algorithm use this formula to update sum
+    // For example..
+    
+    L = query.left
+    R = query.right
+
+    while curL < L                  // rangeSum decreasing
+        number = arr[curL]
+        rangeSum -= formula(number, count[number])
+        count[number]--
+        curL++
+
+    while curL > L                  // rangeSum increasing
+        curL--
+        number = arr[curL]
+        count[number]--
+        rangeSum -= formula(number, count[number])
+```
 
 <!--
 _____
