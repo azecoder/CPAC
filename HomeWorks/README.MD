@@ -766,7 +766,7 @@ To solve this problem, we can use update and query methods of the segment tree. 
 ```
 _____
 ### PB -  X Total Shapes
-* Problem link 		: [geeks - X Total Shapes](https://practice.geeksforgeeks.org/problems/x-total-shapes/0)
+* Problem link 		: [geeksforgeeks - X Total Shapes](https://practice.geeksforgeeks.org/problems/x-total-shapes/0)
 * Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_X-Total-Shapes.cpp)
 * Solution method	: DFS
 * Compexity			: `O(N*M)`
@@ -785,7 +785,7 @@ for each `(x,y)` coordinate, do `DFS` to non colored `(x,y-1)`, `(x,y+1)`, `(x-1
 ```
 _____
 ### PB -  Bipartite Graph
-* Problem link 		: [geeks - Bipartite Graph](https://practice.geeksforgeeks.org/problems/bipartite-graph/1)
+* Problem link 		: [geeksforgeeks - Bipartite Graph](https://practice.geeksforgeeks.org/problems/bipartite-graph/1)
 * Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_Bipartite-Graph.cpp)
 * Solution method	: Graph
 * Compexity			: `O(N+M)`
@@ -800,12 +800,12 @@ In Bipartite graph, we color the graph using two colors. It is also possible for
 ```
 To solve this problem, start to check from `1st` point. Then, find all non-colored adjacent vertices. if destination `v` is not colored, then assign alternate color to this adjacent `v` of `u`.
 ```
-    u = Q.front
-    Q.pop
+    u = FRONT(Q)
+    REMOVE(Q, u)
     for each v in u
         if not colored v
             color[v] = 1 - color[u] 
-            Q.push(v)
+            ADD(Q, v)
 ```
 
 
