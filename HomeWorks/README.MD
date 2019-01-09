@@ -676,7 +676,24 @@ After find the first element of the couple, we will search for the second elemen
         else
             K -= count2     // Otherwise, we do same thing as first
 ```
+_____
+### PB -  Circular RMQ
+* Problem link 		: [codeforces - 52C](http://codeforces.com/contest/52/problem/C)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/52C.cpp)
+* Solution method	: Segment Tree
+* Compexity			: `O(N)`
 
+#### Explanation
+Use segment tree, update range and get the minimum value of the given range. But to calculate the `minRange(left, right)` where `left > right` statements, just get minimum value of the `minRange(right, length)` and `minRange(1, left)`.
+```
+    if left <= right
+        tree->minRange(left, right)
+    else
+        min(
+            tree->minRange(right, N),
+            tree->minRange(1, left)
+        )
+```
 
 <!--
 _____
