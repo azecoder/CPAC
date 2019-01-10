@@ -1,7 +1,3 @@
-/**
-    @problem: MST - Minimum Spanning Tree
-    @url    : https://www.spoj.com/problems/MST/
-*/
 
 #include <bits/stdc++.h> // all c++ libraries
 

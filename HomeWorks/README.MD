@@ -791,7 +791,7 @@ _____
 * Compexity			: `O(N+M)`
 
 #### Explanation
-In Bipartite graph, we color the graph using two colors. It is also possible for cycle graphs, but number of the edges must be even. It is not possible to color a cycle graph with odd cycle using two colors. Additionally, if there is a self loop, then it can not be bipartite graph.
+In Bipartite graph, we color the graph using two colors. It is also possible for cycle graphs, but number of the nodes must be even. It is not possible to color a cycle graph with odd cycle using two colors. Additionally, if there is a self loop, then it can not be bipartite graph.
 ```
     for i from 1 to N
         for j from 1 to N
@@ -858,7 +858,35 @@ Find the strongly connected components of the graph. From each component we need
                 min_count++             // we found how many node have cost is equal to lowest cost
         ......              // code here..
 ```
+_____
+### PB -  MST - Minimum Spanning Tree
+* Problem link 		: [codeforces - MST](https://www.spoj.com/problems/MST/)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/spoj_MST.cpp)
+* Solution method	: Graph, Kruskal
+* Compexity			: `O(N*logN)`
 
+#### Explanation
+Use Kruskal algorithm to solve this minimum spanning tree problem. Start from the minimum weighted edge to biggest one, and then check if parent of the nodes are different, then union the all parents of the nodes of current edge.
+```
+    MAIN
+        SORT(Arr)
+        KRUSKAL()
+
+    UNION(x, v)
+        rx = getRoot(x)
+        rv = getRoot(v)
+        rx = root[rv]
+
+    KRUSKAL()
+        for i from 1 to M
+            weight = Arr[i].weight
+            from = Arr[i].from
+            to = Arr[i].to
+
+            if getRoot(from) != getRoot(to)
+                union(from, to)
+                answer += weight
+```
 
 
 <!--
