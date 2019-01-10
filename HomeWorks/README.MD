@@ -809,7 +809,7 @@ To solve this problem, start to check from `1st` point. Then, find all non-color
 ```
 _____
 ### PB -  Learning Languages
-* Problem link 		: [geeksforgeeks - Learning Languages](http://codeforces.com/contest/277/problem/A)
+* Problem link 		: [codeforces - Learning Languages](http://codeforces.com/contest/277/problem/A)
 * Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/277A.cpp)
 * Solution method	: Graph, DFS
 * Compexity			: `O(N+M)`
@@ -831,7 +831,7 @@ It is a basic Graph problem, we need to find how many Strongly Connected Compone
 ```
 _____
 ### PB -  Checkposts
-* Problem link 		: [geeksforgeeks - Checkposts](http://codeforces.com/contest/427/problem/C)
+* Problem link 		: [codeforces - Checkposts](http://codeforces.com/contest/427/problem/C)
 * Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/427C.cpp)
 * Solution method	: Graph, DFS
 * Compexity			: `O(2*(N+M))`
