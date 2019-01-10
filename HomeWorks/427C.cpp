@@ -9,8 +9,6 @@
 #define clr(a)          memset(a, 0, sizeof(a))
 #define mp              make_pair
 #define pb              push_back
-#define st              first
-#define nd              second
 #define MX              100005
 
 

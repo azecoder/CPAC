@@ -807,10 +807,57 @@ To solve this problem, start to check from `1st` point. Then, find all non-color
             color[v] = 1 - color[u] 
             ADD(Q, v)
 ```
+_____
+### PB -  Learning Languages
+* Problem link 		: [geeksforgeeks - Learning Languages](http://codeforces.com/contest/277/problem/A)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/277A.cpp)
+* Solution method	: Graph, DFS
+* Compexity			: `O(N+M)`
 
+#### Explanation
+It is a basic Graph problem, we need to find how many Strongly Connected Components have in this Graph.
+```
+    DFS(u)
+        visited(u)
+        for each v in u
+            if non visited(v)
+                DFS(v)
+    MAIN()
+        for each l in lang
+            if non visited(l)
+                result++
+                DFS(l)
+        print result
+```
+_____
+### PB -  Checkposts
+* Problem link 		: [geeksforgeeks - Checkposts](http://codeforces.com/contest/427/problem/C)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/427C.cpp)
+* Solution method	: Graph, DFS
+* Compexity			: `O(2*(N+M))`
 
-
-
+#### Explanation
+Find the strongly connected components of the graph. From each component we need to choose a node with the lowest cost. If there are more than one nodes with lowest cost, then there are more than one way to choose node from this component.
+```
+    DFS(u)
+        visited(u)
+        ADD(POSTS, u)    // we add all nodes of the connected component to the POSTS 
+        for each v in u
+            if non visited(v)
+                DFS(v)
+        ADD(POSTS, u)
+    
+    MAIN
+        ......              // code here..
+        // we search for lowest cost node in each component
+        min_cost = INT_MAX
+        for each post in POSTS
+            min_cost = MIN(min_cost, cost[post])    // we found the lowest cost
+        for each post in POSTS
+            if(min_cost == cost[post])
+                min_count++             // we found how many node have cost is equal to lowest cost
+        ......              // code here..
+```
 
 
 

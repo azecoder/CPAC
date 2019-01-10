@@ -8,10 +8,6 @@
 #define rrangev(i,a)    for(size_t i=a.size()-1;i>=0;i--)
 #define mp              make_pair
 #define pb              push_back
-#define st              first
-#define nd              second
-#define MX              400005
-
 
 using namespace std;
 
@@ -29,7 +25,6 @@ void dfs(int per) {
     rangev(i, employee_lang[per]) {
         int clang = employee_lang[per][i];
         range(j, 1, N) {
-
             if(lang_employee[j][clang] && !visited[j]) {
                 dfs(j);
             }
@@ -58,7 +53,7 @@ int main() {
             continue;
         }
         if(!visited[i]) {
-            cerr << "\nW : " << i << "\n";
+            // cerr << "\nW : " << i << "\n";
             result++;
             flag = 1;
             dfs(i);
