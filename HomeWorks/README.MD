@@ -1018,12 +1018,28 @@ Start from searching in array, If weight of the `x'th` item is more than Knapsac
 ```
     if weight[x] > Total
         return Knapsack(x - 1, Total)
-        
+
     return MAX(
         value[x] + Knapsack(x - 1, Total - weight[x]),
         Knapsack(x - 1, Total)
     )
 ```
+_____
+### PB -  Longest Increasing Subsequence
+* Problem link 		: [geeksforgeeks - LIS](https://practice.geeksforgeeks.org/problems/longest-increasing-subsequence/0)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_LIS-(dp).cpp)
+* Solution method	: LIC
+* Compexity			: `O(n^2)`
+
+#### Explanation
+For each element before the `i'th` element of the array, check if it is smaller or not. if it is, then the length of the longest increasing subsequence for index `i` is equal to `max(lic[i], lic[j] + 1)`.
+```
+    lic[1] = 1
+    for i from 2 to N
+        for j from 1 to i
+            if arr[i] > arr[j]
+                lic[i] = max(lic[i], lic[j] + 1)
+``` 
 
 <!--
 _____
