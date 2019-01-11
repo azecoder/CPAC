@@ -2,19 +2,18 @@
 
 // defines
 #define faster_io       ios_base::sync_with_stdio(false);cin.tie()
-#define rep(i,a)        for(int i=0;i<a;i++)
-#define rrep(i,a)       for(int i=a-1,i>=0;i--)
 #define range(i,a,b)    for(int i=a;i<=b;i++)
 #define rrange(i,a,b)   for(int i=a;i>=b;i--)
 #define rangev(i,a)     for(int i=0;i<a.size();i++)
 #define rrangev(i,a)    for(int i=a.size()-1;i>=0;i--)
+#define rangem(x,v)     for(typeof (v).begin() x=(v).begin();x!=(v).end();++x)
 #define clr(a)          memset(a, 0, sizeof(a))
 #define all(a)          a.begin(), a.end()
 #define mp              make_pair
 #define pb              push_back
 #define st              first
 #define nd              second
-#define MX              200005
+#define MX              300005
 
 
 using namespace std;
@@ -23,56 +22,56 @@ typedef long long ll;
 typedef vector <int> vi;
 typedef pair <int, int> pii;
 typedef vector <pii> vii;
-typedef pair <int, pii> pip;
+typedef pair<double, int> pdi;
+typedef vector<pdi> vdi;
 
 const ll INF = 1e9 + 100;
 const ll MOD = 1e9 + 7;
 
 
-int N, arr[MX];
+int Knapsack(int N, int W, int *arr) {
 
-int LBS() {
-
-    int *lis = new int[N+1];
-    int *lds = new int[N+1];
-    range(i, 1, N) {
-        lis[i] = 1;
-        lds[i] = 1;
+    if(W == 0) {
+        return 1;
     }
 
-    range(i, 2, N) {
-        range(j, 1, i - 1) {
-            if(arr[i] > arr[j]) {
-                lis[i] = max(lis[i], lis[j] + 1);
-            }
-        }
-    }
-    rrange(i, N - 1, 1) {
-        rrange(j, N, i + 1) {
-            if(arr[i] > arr[j]) {
-                lds[i] = max(lds[i], lds[j] + 1);
-            }
-        }
+    if(N == 0 && W > 0) {
+        return 0;
     }
 
-    int ret = 0;
-    range(i, 1, N) {
-        ret = max(ret, lis[i] + lds[i]);
+    if(arr[N] > W) {
+        return Knapsack(N - 1, W, arr);
     }
 
-    return ret - 1;
+    return Knapsack(N - 1, W, arr) || Knapsack(N - 1, W - arr[N], arr);
+}
+
+int subsetSum(int N, int *arr) {
+
+    int sum = 0;
+    range(i, 1, N) sum += arr[i];
+    if(sum%2) {
+        return 0;
+    }
+
+    int W = sum / 2;
+
+    return Knapsack(N, W, arr);
 
 }
+
+int N;
 
 int main() {
 
     faster_io;
 
     cin >> N;
-    range(i, 1, N) {
-        cin >> arr[i];
-    }
-    cout << LBS();
+
+    int *arr = new int[N+1];
+    range(i, 1, N) cin >> arr[i];
+
+    cout << (subsetSum(N, arr) ? "YES" : "NO");
 
     return 0;
-} 
+}

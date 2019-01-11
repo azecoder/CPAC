@@ -198,73 +198,6 @@ for i from 1 to N - 2
         result += cnt[i+2]
 ```
 _____
-### PB - Edit distance
-* Problem link 		: [geeksforgeeks - Edit-Distance](https://practice.geeksforgeeks.org/problems/edit-distance/0)
-* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_Edit-Distance.cpp)
-* Solution method	: Recursion
-* Compexity			: `O(N*M)`
-
-#### Explanation
-If first string is empty, the only option is to insert all characters of second string into first or If second string is empty, the only option is to remove all characters of first string.
-```
-    if A.length == 0    // A - first string, length N
-        return B.length
-
-    if B.length == 0    // B - second string, length M
-        return A.length
-```
-If last characters of two strings are same, nothing much to do. Ignore last characters and get count for remaining strings. 
-```
-    if A[N] == B[M]
-        return editDistance(N-1, M-1)
-```
-If last characters are not same, consider all three operations on last character of first string, recursively compute minimum cost for all three operations and take minimum of three values.
-```
-    return 1 + MIN(
-            editDistance(N, M - 1),     // Insert
-            editDistance(N - 1, M),     // Remove
-            editDistance(N - 1, M - 1)  // Replace
-        )
-``` 
-_____
-### PB - Longest Bitonic Subsequence
-* Problem link 		: [geeksforgeeks - LBS](https://practice.geeksforgeeks.org/problems/longest-bitonic-subsequence/0)
-* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_LBS.cpp)
-* Solution method	: longest increasing and decreasing subsequence
-* Compexity			: `O(N^2)`
-
-#### Explanation
-* Let `LIS` to be an array which `LIS[i]` is longest increasing subsequence ending with `arr[i]`
-* Let `LDS` to be an array which `LDS[i]` longest decreasing subsequence starting with `arr[i]`
-* Allocate memory for `LIS` and `LDS`, then initialize values as `1` for all indexes
-```
-    int lis = array
-    int lds = array
-    for i from 1 to N
-        lis[i] = lds[i] = 1
-```
-* Compute `LIS` values from `left` to `right`
-```
-    for i from 2 to N
-        for j from 1 to i - 1
-            if arr[i] > arr[j]
-                lis[i] = max(lis[i], lis[j] + 1)
-```
-* Compute `LDS` values from `left` to `right`
-```
-    for i from N - 1 to 1
-        for j from N to i + 1
-            if arr[i] > arr[j]
-                lds[i] = max(lds[i], lds[j] + 1)
-```
-* Return the maximum value of `LIS[i] + LDS[i] - 1` `# -1 is for current index`
-```
-    int result = 0
-    for i from 1 to N
-        result = max(result, lis[i] + lds[i] - 1)
-    return result
-```
-_____
 ### PB - Two Heaps
 * Problem link 		: [codeforces - 353B](http://codeforces.com/contest/353/problem/B)
 * Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/353B.cpp)
@@ -1040,6 +973,86 @@ For each element before the `i'th` element of the array, check if it is smaller 
             if arr[i] > arr[j]
                 lic[i] = max(lic[i], lic[j] + 1)
 ``` 
+
+_____
+### PB - Edit distance
+* Problem link 		: [geeksforgeeks - Edit-Distance](https://practice.geeksforgeeks.org/problems/edit-distance/0)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_Edit-Distance.cpp)
+* Solution method	: Recursion
+* Compexity			: `O(N*M)`
+
+#### Explanation
+If first string is empty, the only option is to insert all characters of second string into first or If second string is empty, the only option is to remove all characters of first string.
+```
+    if A.length == 0    // A - first string, length N
+        return B.length
+
+    if B.length == 0    // B - second string, length M
+        return A.length
+```
+If last characters of two strings are same, nothing much to do. Ignore last characters and get count for remaining strings. 
+```
+    if A[N] == B[M]
+        return editDistance(N-1, M-1)
+```
+If last characters are not same, consider all three operations on last character of first string, recursively compute minimum cost for all three operations and take minimum of three values.
+```
+    return 1 + MIN(
+            editDistance(N, M - 1),     // Insert
+            editDistance(N - 1, M),     // Remove
+            editDistance(N - 1, M - 1)  // Replace
+        )
+``` 
+_____
+### PB - Subset Sum Problem
+* Problem link 		: [geeksforgeeks - Subset Sum](https://practice.geeksforgeeks.org/problems/subset-sum-problem/0)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_Subset-Sum-Problem.cpp)
+* Solution method	: Knapsack
+* Compexity			: `O(N*sum)`
+
+#### Explanation
+Firstly find sum of the all elements, then do knapsack with total weight `sum/2`
+_____
+### PB - Longest Bitonic Subsequence
+* Problem link 		: [geeksforgeeks - LBS](https://practice.geeksforgeeks.org/problems/longest-bitonic-subsequence/0)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_LBS.cpp)
+* Solution method	: LIS
+* Compexity			: `O(N^2)`
+
+#### Explanation
+* Let `LIS` to be an array which `LIS[i]` is longest increasing subsequence ending with `arr[i]`
+* Let `LDS` to be an array which `LDS[i]` longest decreasing subsequence starting with `arr[i]`
+* Allocate memory for `LIS` and `LDS`, then initialize values as `1` for all indexes
+```
+    int lis = array
+    int lds = array
+    for i from 1 to N
+        lis[i] = lds[i] = 1
+```
+* Compute `LIS` values from `left` to `right`
+```
+    for i from 2 to N
+        for j from 1 to i - 1
+            if arr[i] > arr[j]
+                lis[i] = max(lis[i], lis[j] + 1)
+```
+* Compute `LDS` values from `left` to `right`
+```
+    for i from N - 1 to 1
+        for j from N to i + 1
+            if arr[i] > arr[j]
+                lds[i] = max(lds[i], lds[j] + 1)
+```
+* Return the maximum value of `LIS[i] + LDS[i] - 1` `# -1 is for current index`
+```
+    int result = 0
+    for i from 1 to N
+        result = max(result, lis[i] + lds[i] - 1)
+    return result
+```
+
+
+
 
 <!--
 _____
