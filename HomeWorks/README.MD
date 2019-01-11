@@ -860,7 +860,7 @@ Find the strongly connected components of the graph. From each component we need
 ```
 _____
 ### PB -  MST - Minimum Spanning Tree
-* Problem link 		: [codeforces - MST](https://www.spoj.com/problems/MST/)
+* Problem link 		: [spoj - MST](https://www.spoj.com/problems/MST/)
 * Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/spoj_MST.cpp)
 * Solution method	: Graph, Kruskal
 * Compexity			: `O(N*logN)`
@@ -886,6 +886,71 @@ Use Kruskal algorithm to solve this minimum spanning tree problem. Start from th
             if getRoot(from) != getRoot(to)
                 union(from, to)
                 answer += weight
+```
+_____
+### PB -  Magic Numbers
+* Problem link 		: [codeforces - Magic Numbers](http://codeforces.com/contest/320/problem/A)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/320A.cpp)
+* Solution method	: Greedy, Linear
+* Compexity			: `O(N)`
+
+#### Explanation
+if in initial string there have these following cases, then we skip to next indexed, else it is not magic number.
+1. `str[i] == 1`
+2. `str[i] == 4 && str[i-1] == 1`
+3. `str[i] == 4 && str[i-1] == 4 && str[i-2] == 1`
+
+_____
+### PB -  Wilbur and Array
+* Problem link 		: [codeforces - Wilbur and Array](http://codeforces.com/contest/596/problem/B)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/596B.cpp)
+* Solution method	: Greedy
+* Compexity			: `O(N)`
+
+#### Explanation
+We need `|b1|` operations to make `a1` equal to `b1`. Then we need `|b2 - b1|` operations to make `a2` equal to `b2`. In general, to make `ai = bi` we need to make `|bi - bi - 1|` operations, so in total we make `|b1| + |b2 - b1| + |b3 - b2| + ... + |bn - bn - 1|` operations.
+```
+    for i from 1 to N
+        read(x)
+        x += v
+        answer += |x|
+        v -= x
+```
+_____
+### PB -  Alternative Thinking
+* Problem link 		: [codeforces - Alternative Thinking](http://codeforces.com/contest/603/problem/A)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/603A.cpp)
+* Solution method	: Greedy
+* Compexity			: `O(N)`
+
+#### Explanation
+In this problem we can change string in these following ways.
+1. for `...000...` string we change it to `...010...`
+2. for `...1111...` string we change it to `...1001....`
+3. for `...00000...` string we change it to `...01110...`
+```
+    read str
+    from i from 1 to str.length
+        if str[i] == str[i-1]
+            count++
+    result = MIN(result, result - count + 2)
+```
+_____
+### PB -  N meetings in one room
+* Problem link 		: [geeksforgeeks - N meetings in one room](https://practice.geeksforgeeks.org/problems/n-meetings-in-one-room/0)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_N-meetings-in-one-room.cpp)
+* Solution method	: Greedy
+* Compexity			: `O(N*logN)`
+
+#### Explanation
+Firstly, sort all meetings by their finish time. Then start first meeting and search if start time of this meeting is after the finish time of the last meeting. If yes then add it to result, else skip to next one.
+```
+    arr[0] = Meeting(0, 0, 0)       // Meeting(start, finish, index)
+    last_index = 0
+    for i from 1 to N
+        if arr[i].start > arr[last_index].finish
+            ADD(result, index)      // we save index because of sorting process
+            last_index = i
 ```
 
 
