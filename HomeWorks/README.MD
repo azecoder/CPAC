@@ -1050,3 +1050,27 @@ In the above partial recursion tree, `LPS(1, 4)` is being solved twice. If we dr
         setLength(left, right, _C)
         return _C
 ```
+_____
+### PB -  Longest Prefix Suffix
+* Problem link 		: [geeksforgeeks - Longest Prefix Suffix](https://practice.geeksforgeeks.org/problems/longest-prefix-suffix/0)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_Longest-Prefix-Suffix.cpp)
+* Solution method	: KMP 
+* Compexity			: `O(N)`
+
+#### Explanation
+Create prefix array of the Knuth Morris Pratt algorithm. And get the maximum value of the prefix array as a result.
+```
+    ind = 0, i = 1
+    while i < S.length
+        if S[i] == S[ind]
+            Arr[i++] = ++ind
+        else
+            if ind > 0
+                ind -= Arr[ind - 1]
+            else
+                Arr[i++] = 0
+    
+    result = 1
+    for i from 1 to N
+        result = max(result, Arr[i])
+```
