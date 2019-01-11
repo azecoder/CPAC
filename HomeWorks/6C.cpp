@@ -70,4 +70,4 @@ int main() {
     cout << Alice.ate << " " << Bob.ate << "\n";
 
     return 0;
-}
+} 

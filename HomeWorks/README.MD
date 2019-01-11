@@ -1050,17 +1050,3 @@ In the above partial recursion tree, `LPS(1, 4)` is being solved twice. If we dr
         setLength(left, right, _C)
         return _C
 ```
-
-
-
-
-<!--
-_____
-### PB -  https://www.spoj.com/problems/UPDATEIT/
-* Problem link 		: [spoj` - UPDATEIT](https://www.spoj.com/problems/UPDATEIT/)
-* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/UPDATEIT.cpp)
-* Solution method	: BIT, Fenwick
-* Compexity			: O(log<sup>N</sup>)
-
-#### Explanation
--->
