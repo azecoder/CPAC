@@ -809,7 +809,7 @@ To solve this problem, start to check from `1st` point. Then, find all non-color
 ```
 _____
 ### PB -  Learning Languages
-* Problem link 		: [codeforces - Learning Languages](http://codeforces.com/contest/277/problem/A)
+* Problem link 		: [codeforces - 277A](http://codeforces.com/contest/277/problem/A)
 * Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/277A.cpp)
 * Solution method	: Graph, DFS
 * Compexity			: `O(N+M)`
@@ -831,7 +831,7 @@ It is a basic Graph problem, we need to find how many Strongly Connected Compone
 ```
 _____
 ### PB -  Checkposts
-* Problem link 		: [codeforces - Checkposts](http://codeforces.com/contest/427/problem/C)
+* Problem link 		: [codeforces - 427C](http://codeforces.com/contest/427/problem/C)
 * Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/427C.cpp)
 * Solution method	: Graph, DFS
 * Compexity			: `O(2*(N+M))`
@@ -889,7 +889,7 @@ Use Kruskal algorithm to solve this minimum spanning tree problem. Start from th
 ```
 _____
 ### PB -  Magic Numbers
-* Problem link 		: [codeforces - Magic Numbers](http://codeforces.com/contest/320/problem/A)
+* Problem link 		: [codeforces - 320A](http://codeforces.com/contest/320/problem/A)
 * Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/320A.cpp)
 * Solution method	: Greedy, Linear
 * Compexity			: `O(N)`
@@ -918,7 +918,7 @@ We need `|b1|` operations to make `a1` equal to `b1`. Then we need `|b2 - b1
 ```
 _____
 ### PB -  Alternative Thinking
-* Problem link 		: [codeforces - Alternative Thinking](http://codeforces.com/contest/603/problem/A)
+* Problem link 		: [codeforces - 603A](http://codeforces.com/contest/603/problem/A)
 * Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/603A.cpp)
 * Solution method	: Greedy
 * Compexity			: `O(N)`
@@ -952,20 +952,86 @@ Firstly, sort all meetings by their finish time. Then start first meeting and se
             ADD(result, index)      // we save index because of sorting process
             last_index = i
 ```
+_____
+### PB -  Lexicographically Maximum Subsequence
+* Problem link 		: [codeforces - 196A](http://codeforces.com/contest/196/problem/A)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/196A.cpp)
+* Solution method	: Greedy
+* Compexity			: `O(N)`
 
+#### Explanation
+Get a new vector. Add each character to vector, But before adding, look the last element of the the vector, while it is smaller then current character, then remove it, else add this character to vector.
+```
+    read string
+    for each ch in string
+        while non empty(v) && v.last < ch   
+            remove_back()
+        v.add(ch)
+```
+_____
+### PB -  Woodcutters
+* Problem link 		: [codeforces - 545C](http://codeforces.com/contest/545/problem/C)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/545C.cpp)
+* Solution method	: Greedy
+* Compexity			: `O(N)`
+
+#### Explanation
+Let's fell leftmost tree to the left (it always doesn't make an answer worse). After that, try to fell the next tree. If we can fell it to the left, let's do it (because it also always doesn't make an answer worse). If we can't, then try to fell it to the right. If it is possible, let's do it. Last step is correct because felling some tree to the right may only prevent the next tree's fallen.
+_____
+### PB -  Queue
+* Problem link 		: [codeforces - 141C](http://codeforces.com/contest/141/problem/C)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/141C.cpp)
+* Solution method	: Greedy
+* Compexity			: `O(N^2)`
+
+#### Explanation
+Sort all array by the height. Then crate a new queue, and add each person to his place in new queue.
+```
+    for i from 1 to N
+        curr = person[i]
+        ADD(Q, curr)
+        while x.height < curr.height        // x in Q
+            swap(x, curr)                   // exchange the place
+            x--
+```
+_____
+### PB -  Longest Common Subsequence
+* Problem link 		: [geeksforgeeks - LCS](https://practice.geeksforgeeks.org/problems/longest-common-subsequence/0)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_LCS.cpp)
+* Solution method	: LCS
+* Compexity			: `O(N*M)`
+
+#### Explanation
+it is basic LCS problem, we need to find the length of the subsequence. So, lets create two dimensial `dp[1.N][1..M]` array, and do these process.
+1. `if A[i] == B[j], then dp[i][j] = dp[i-1][j-1] + 1`
+2. `else, dp[i][j] = MAX(dp[i][j-1], dp[i-1][j])` 
+
+_____
+### PB -  0 - 1 Knapsack Problem
+* Problem link 		: [geeksforgeeks - Knapsack Problem](https://practice.geeksforgeeks.org/problems/0-1-knapsack-problem/0)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_Knapsack-Problem.cpp)
+* Solution method	: Knapsack
+* Compexity			: `O(2^n)`
+
+#### Explanation
+Start from searching in array, If weight of the `x'th` item is more than Knapsack capacity `W`, then this item cannot be included. Otherwise, return the maximum of the values `x'th` included and not included.
+```
+    if weight[x] > Total
+        return Knapsack(x - 1, Total)
+        
+    return MAX(
+        value[x] + Knapsack(x - 1, Total - weight[x]),
+        Knapsack(x - 1, Total)
+    )
+```
 
 <!--
 _____
 ### PB -  https://www.spoj.com/problems/UPDATEIT/
-* Problem link 		: [spoj - UPDATEIT](https://www.spoj.com/problems/UPDATEIT/)
+* Problem link 		: [spoj` - UPDATEIT](https://www.spoj.com/problems/UPDATEIT/)
 * Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/UPDATEIT.cpp)
 * Solution method	: BIT, Fenwick
 * Compexity			: O(log<sup>N</sup>)
 
 #### Explanation
-```
-    while index <= length
-        arr[ind] += value
-        index += index & (-index)
-```
 -->
