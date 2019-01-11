@@ -59,74 +59,6 @@ DFS(int x)          // x is a curent character
     new_alphabet.add(x)
 ```
 _____
-### PB -  Longest Palindromic Subsequence
-* Problem link 		: [geeksforgeeks - LPS](https://practice.geeksforgeeks.org/problems/longest-palindromic-subsequence/0)
-* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_LPS.cpp)
-* Solution method	: Recursion & DP
-* Compexity			: `O(N^2)`
-
-#### Explanation
-Let `X` be the input sequence of length `N` and `LPS(X, 0, N-1)` be the length of the longest palindromic subsequence of `X`.
-
-Let A be a subsequence of X. 
-```
-    A = X[left, right]
-```
-if `A` is a single character then it is a palindrome, and length of this palindrome is one.
-```
-    if left == right
-        return 1
-```
-if length of `A` is `2` and `A[0]` is equal to `A[1]` then it is a palindrome.
-```
-    if left + 1 == right and X[left] = X[right]
-        return 2
-```
-If there are more than two characters in subsequence `A`, and first and last characters are same, then
-```
-    if X[left] == X[right]
-        return 2 + LPS( left + 1 , right - 1 )
-```
-if first and last characters of the subsequence are different, then
-if last and first characters of the subsequence are same, then check `A[first, last-1]` and `A[first+1, last]` recursively.
-```
-    if X[left] != X[right]
-        return MAX( 
-            LPS(left, right - 1), 
-            LPS(left + 1, right) 
-        )
-```
-
-Considering the above implementation, following is a partial recursion tree for a sequence of length 6 with all different characters.
-
-                [0..5]
-               /      \ 
-          [0..4]      [1..5]
-          /   \        /   \
-     [0..3] [1..4]  [1..4] [2..5]
-
-In the above partial recursion tree, `LPS(1, 4)` is being solved twice. If we draw the complete recursion tree, then we can see that there are many subproblems which are solved again and again. But we can use `DP` to save the results of the solved subsequences.
-```
-    // with this method, we will not solve subproblems again and again
-    // if we solve it once, we save the result into DP, 
-    // and then when we need it, we get result from DP
-    int getLength(int l, int r)
-        if not DP[l][r]
-            DP[l][r] = LPS(l,r) // we save result to DP
-        return DP[l][r] // and we get result from DP
-    
-    void setLength(int l, int r, int len)
-        DP[l][r] = len
-
-    // if first and last characters are different
-    if X[left] != X[right]
-        int _L = getLength(left + 1, right)
-        int _R = getLength(left, right + 1)
-        int _C = MAX( _L, _R )
-        setLength(left, right, _C)
-        return _C
-```
-_____
 ### PB - Alice, Bob and Chocolate 
 * Problem link 		: [codeforces - 6C](http://codeforces.com/contest/6/problem/C)
 * Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/6C.cpp)
@@ -1049,6 +981,74 @@ _____
     for i from 1 to N
         result = max(result, lis[i] + lds[i] - 1)
     return result
+```
+_____
+### PB -  Longest Palindromic Subsequence
+* Problem link 		: [geeksforgeeks - LPS](https://practice.geeksforgeeks.org/problems/longest-palindromic-subsequence/0)
+* Solution code 	: [cpp](https://github.com/azecoder/CPAC/blob/master/HomeWorks/geeks_LPS.cpp)
+* Solution method	: Recursion & DP
+* Compexity			: `O(N^2)`
+
+#### Explanation
+Let `X` be the input sequence of length `N` and `LPS(X, 0, N-1)` be the length of the longest palindromic subsequence of `X`.
+
+Let A be a subsequence of X. 
+```
+    A = X[left, right]
+```
+if `A` is a single character then it is a palindrome, and length of this palindrome is one.
+```
+    if left == right
+        return 1
+```
+if length of `A` is `2` and `A[0]` is equal to `A[1]` then it is a palindrome.
+```
+    if left + 1 == right and X[left] = X[right]
+        return 2
+```
+If there are more than two characters in subsequence `A`, and first and last characters are same, then
+```
+    if X[left] == X[right]
+        return 2 + LPS( left + 1 , right - 1 )
+```
+if first and last characters of the subsequence are different, then
+if last and first characters of the subsequence are same, then check `A[first, last-1]` and `A[first+1, last]` recursively.
+```
+    if X[left] != X[right]
+        return MAX( 
+            LPS(left, right - 1), 
+            LPS(left + 1, right) 
+        )
+```
+
+Considering the above implementation, following is a partial recursion tree for a sequence of length 6 with all different characters.
+
+                [0..5]
+               /      \ 
+          [0..4]      [1..5]
+          /   \        /   \
+     [0..3] [1..4]  [1..4] [2..5]
+
+In the above partial recursion tree, `LPS(1, 4)` is being solved twice. If we draw the complete recursion tree, then we can see that there are many subproblems which are solved again and again. But we can use `DP` to save the results of the solved subsequences.
+```
+    // with this method, we will not solve subproblems again and again
+    // if we solve it once, we save the result into DP, 
+    // and then when we need it, we get result from DP
+    int getLength(int l, int r)
+        if not DP[l][r]
+            DP[l][r] = LPS(l,r) // we save result to DP
+        return DP[l][r] // and we get result from DP
+    
+    void setLength(int l, int r, int len)
+        DP[l][r] = len
+
+    // if first and last characters are different
+    if X[left] != X[right]
+        int _L = getLength(left + 1, right)
+        int _R = getLength(left, right + 1)
+        int _C = MAX( _L, _R )
+        setLength(left, right, _C)
+        return _C
 ```
 
 
